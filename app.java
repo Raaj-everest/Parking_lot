@@ -66,13 +66,13 @@ public class app {
 
                     case "OCCUPIED_SLOTS":
                         if (newStr[2] == "BIKE") {
-
+                           ParkingLot.display_occupied_slots_bike();
                         }
                         if (newStr[2] == "CAR") {
-
+                            ParkingLot.display_occupied_slots_cars();
                         }
                         if (newStr[2] == "TRUCK") {
-
+                            ParkingLot.display_occupied_slots_truck();
                         }
                         System.out.println("OCCUPIED");
                         break;

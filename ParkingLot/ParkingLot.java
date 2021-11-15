@@ -237,5 +237,68 @@ public class ParkingLot {
             
         }
     }
+    public static void display_occupied_slots_truck(){
+        List<Integer> truck_slots = new ArrayList<>();
+        
+        for (int i = 0; i < Number_of_floors; i++) {
+
+            for (int j = 0; j < Number_of_slots; j++) {
+                if (j == 0) {
+                    if (floors[i][j] != null) {
+                        truck_slots.add(j+1);
+                        
+                    }
+                }
+            }
+            
+            System.out.print("No. of free slots for TRUCK on Floor " + (i+1) + ": " );
+            System.out.print(truck_slots);
+        
+              truck_slots.clear();
+    
+        }
+    }
+    public static void display_occupied_slots_bike(){
+        List<Integer> bike_slots = new ArrayList<>();
+        
+        for (int i = 0; i < Number_of_floors; i++) {
+
+            for (int j = 0; j < Number_of_slots; j++) {
+                if (j>0&&j<3) {
+                    if (floors[i][j] != null) {
+                       bike_slots.add(j+1);
+                        
+                    }
+                }
+            }
+            
+            System.out.print("No. of free slots for BIKE on Floor " + (i+1) + ": " );
+            System.out.print(bike_slots);
+            
+              bike_slots.clear();
+            
+        }
+    }
+    public static void display_occupied_slots_cars(){
+        List<Integer> car_slots = new ArrayList<>();
+        
+        for (int i = 0; i < Number_of_floors; i++) {
+
+            for (int j = 0; j < Number_of_slots; j++) {
+                if (j>2) {
+                    if (floors[i][j] != null) {
+                       car_slots.add(j+1);
+                        
+                    }
+                }
+            }
+            
+            System.out.print("No. of free slots for BIKE on Floor " + (i+1) + ": " );
+            System.out.print(car_slots);
+        
+              car_slots.clear();
+            
+        }
+    }
 
 }
