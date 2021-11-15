@@ -5,14 +5,16 @@ import ParkingLot.ParkingLot;
 
 
 
-public class input {
+public class app {
 
 
     public static void main(String[] args) {
+        System.out.println("\n");
         boolean exitstatus = false;
         String quit = "exit";
-        help();
+        ParkingLot.help();
         System.out.print("Enter the commands ");
+        System.out.println("\n");
         do {
             Scanner sc = new Scanner(System.in);
             String str = sc.nextLine();
@@ -121,7 +123,7 @@ public class input {
             default:
             System.out.println("oops you made an error in typing........");
             System.out.println("please follow the instruction as mentioned below");
-                help();
+                ParkingLot.help();
                 break;
 
             }
@@ -130,18 +132,6 @@ public class input {
     }
 
 
-    public static void help() {
-        System.out.println("\n");
-        System.out.println("this is a plafrom for maintaining parking lot");
-        System.out.println("you can Manage the parking lot by following commands");
-        System.out.println("create_parking_lot <Building_ID> <Number_Of_floors> <Number_of_slots>");
-        System.out.println("park_vehicle <rigistration_number> <colour>");
-        System.out.println("unpark_vehicle <rigistration_number> <colour>");
-        System.out.println("display free_count <vehicle_type>");
-        System.out.println("display free_slots <vehicle_type>");
-        System.out.println("display occupied_slots <vehicle_type>");
-        System.out.println("exit");
-        System.out.println("\n\n");
-    }
+
 
 }

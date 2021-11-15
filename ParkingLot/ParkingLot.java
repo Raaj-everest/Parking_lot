@@ -107,4 +107,18 @@ public class ParkingLot {
         return ticket;
     }
 
+    public static void help() {
+        System.out.println("\n");
+        System.out.println("this is a plafrom for maintaining parking lot");
+        System.out.println("you can Manage the parking lot by following commands");
+        System.out.println("create_parking_lot <Building_ID> <Number_Of_floors> <Number_of_slots>");
+        System.out.println("park_vehicle <rigistration_number> <colour>");
+        System.out.println("unpark_vehicle <rigistration_number> <colour>");
+        System.out.println("display free_count <vehicle_type>");
+        System.out.println("display free_slots <vehicle_type>");
+        System.out.println("display occupied_slots <vehicle_type>");
+        System.out.println("exit");
+        System.out.println("\n\n");
+    }
+
 }
