@@ -33,18 +33,18 @@ public class app {
                     switch (newStr[1]) {
 
                     case "FREE_COUNT":
-                        System.out.println("HELLO");
-                        if (newStr[2] == "BIKE") {
-                         
+                
+                        if (newStr[2].equals("BIKE")) {
+                           ParkingLot.display_free_count_bike();
 
                         }
-                        if (newStr[2] == "CAR") {
+                        if (newStr[2].equals("CAR")) {
                          
-                            
+                            ParkingLot.display_free_count_car();
 
                         }
-                        if (newStr[2] == "TRUCK") {
-                     
+                        if (newStr[2].equals("TRUCK") ){
+                           ParkingLot.display_free_count_truck();
 
                         }
 

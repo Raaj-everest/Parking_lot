@@ -21,6 +21,9 @@ public class ParkingLot {
     }
 
     public static ParkingLot CreateParkingLot(String id, int Number_of_floors, int Number_of_slots) {
+        if (parkinglot_instance != null) {
+            System.out.println("parking lot is already created..");
+        }
         if (parkinglot_instance == null) {
             parkinglot_instance = new ParkingLot(id, Number_of_floors, Number_of_slots);
             System.out.println("\n\n");
@@ -29,9 +32,6 @@ public class ParkingLot {
             System.out.println("=====================================================================");
             System.out.println("Created parking lot with " + Number_of_floors + " floors having " + Number_of_slots
                     + " slots per floor");
-        }
-        if (parkinglot_instance != null) {
-            System.out.println("parking lot is already created..");
         }
 
         return parkinglot_instance;
@@ -46,7 +46,7 @@ public class ParkingLot {
         for (int i = 0; i < Number_of_floors; i++) {
             if (flag == false) {
                 for (int j = 0; j < Number_of_slots; j++) {
-                    if (vehicle_type.equals("truck") && j == 0) {
+                    if (vehicle_type.equals("TRUCK") && j == 0) {
                         if (floors[i][j] == null) {
                             floors[i][j] = new Truck(rigistration_number, newStr);
 
@@ -57,7 +57,7 @@ public class ParkingLot {
                             System.out.println("Parking lot full for the trucks");
                         }
 
-                    } else if (vehicle_type.equals("bike") && j > 0 && j < 3) {
+                    } else if (vehicle_type.equals("BIKE") && j > 0 && j < 3) {
                         if (floors[i][j] == null) {
                             floors[i][j] = new Bike(rigistration_number, newStr);
 
@@ -71,8 +71,8 @@ public class ParkingLot {
 
                     } else
 
-                    if (vehicle_type.equals("car")) {
-                        if (floors[i][j] == null) {
+                    if (vehicle_type.equals("CAR")) {
+                        if (floors[i][j] == null && j > 2) {
                             floors[i][j] = new Car(rigistration_number, newStr);
 
                             flag = true;
@@ -119,6 +119,56 @@ public class ParkingLot {
         System.out.println("display occupied_slots <vehicle_type>");
         System.out.println("exit");
         System.out.println("\n\n");
+    }
+
+    public static void display_free_count_truck() {
+        int free_truck_slots = 0;
+
+        for (int i = 0; i < Number_of_floors; i++) {
+
+            for (int j = 0; j < Number_of_slots; j++) {
+                if (j == 0) {
+                    if (floors[i][j] == null) {
+                        free_truck_slots += 1;
+                    }
+                }
+            }
+            System.out.println("No. of free slots for TRUCK on Floor " + i + ":" + free_truck_slots);
+            free_truck_slots=0;
+        }
+    }
+
+    public static void display_free_count_bike() {
+        int free_bike_slots = 0;
+
+        for (int i = 0; i < Number_of_floors; i++) {
+
+            for (int j = 0; j < Number_of_slots; j++) {
+                if (j > 0 && j < 3) {
+                    if (floors[i][j] == null) {
+                        free_bike_slots += 1;
+                    }
+                }
+            }
+            System.out.println("No. of free slots for Bike on Floor " + i + ":" + free_bike_slots);
+            free_bike_slots=0;
+        }
+    }
+
+    public static void display_free_count_car() {
+        int free_car_slots = 0;
+        for (int i = 0; i < Number_of_floors; i++) {
+
+            for (int j = 0; j < Number_of_slots; j++) {
+                if (j > 2) {
+                    if (floors[i][j] == null) {
+                        free_car_slots += 1;
+                    }
+                }
+            }
+            System.out.println("No. of free slots for CAR on Floor " + i + ":" + free_car_slots);
+            free_car_slots=0;
+        }
     }
 
 }
