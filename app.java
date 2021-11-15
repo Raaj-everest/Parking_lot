@@ -52,16 +52,16 @@ public class app {
 
                     case "FREE_SLOTS":
 
-                        if (newStr[2] == "BIKE") {
-
+                        if (newStr[2].equals("BIKE")) {
+                            ParkingLot.display_free_slots_bike();
                         }
-                        if (newStr[2] == "CAR") {
-
+                        if (newStr[2].equals("CAR")) {
+                           ParkingLot.display_free_slots_cars();
                         }
-                        if (newStr[2] == "TRUCK") {
-
+                        if (newStr[2].equals("TRUCK") ){
+                           ParkingLot.display_free_slots_truck();
                         }
-                        System.out.println("FREE");
+                        
                         break;
 
                     case "OCCUPIED_SLOTS":
