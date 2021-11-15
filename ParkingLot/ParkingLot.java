@@ -189,7 +189,10 @@ public class ParkingLot {
             }
             
             System.out.print("No. of free slots for TRUCK on Floor " + (i+1) + ": " );
-            System.out.print(truck_slots);
+            for (int l = 0; l < truck_slots.size();l++) 
+            { 		    
+                System.out.print(truck_slots.get(i)); 		
+            }  
         
               truck_slots.clear();
     
@@ -210,7 +213,10 @@ public class ParkingLot {
             }
             
             System.out.print("No. of free slots for BIKE on Floor " + (i+1) + ": " );
-            System.out.print(bike_slots);
+            for (int l = 0; l < bike_slots.size();l++) 
+            { 		      
+                System.out.print(bike_slots.get(i)); 		
+            }  
             
               bike_slots.clear();
             
@@ -230,8 +236,11 @@ public class ParkingLot {
                 }
             }
             
-            System.out.print("No. of free slots for BIKE on Floor " + (i+1) + ": " );
-            System.out.print(car_slots);
+            System.out.print("No. of free slots for CAR on Floor " + (i+1) + ": " );
+            for (int l= 0; l < car_slots.size();l++) 
+            { 		      
+                System.out.print(car_slots.get(i)); 		
+            }  
         
               car_slots.clear();
             
@@ -251,8 +260,11 @@ public class ParkingLot {
                 }
             }
             
-            System.out.print("No. of free slots for TRUCK on Floor " + (i+1) + ": " );
-            System.out.print(truck_slots);
+            System.out.print("No. of occupied slots for TRUCK on Floor " + (i+1) + ": " );
+            for (int l = 0; l < truck_slots.size();l++) 
+            { 		      
+                System.out.print(truck_slots.get(i)); 		
+            }  
         
               truck_slots.clear();
     
@@ -272,8 +284,11 @@ public class ParkingLot {
                 }
             }
             
-            System.out.print("No. of free slots for BIKE on Floor " + (i+1) + ": " );
-            System.out.print(bike_slots);
+            System.out.print("No. of occupied slots for BIKE on Floor " + (i+1) + ": " );
+            for (int l= 0; l < bike_slots.size();l++) 
+            { 		      
+                System.out.print(bike_slots.get(i)); 		
+            }  
             
               bike_slots.clear();
             
@@ -293,8 +308,11 @@ public class ParkingLot {
                 }
             }
             
-            System.out.print("No. of free slots for BIKE on Floor " + (i+1) + ": " );
-            System.out.print(car_slots);
+            System.out.print("No. of occupied slots for CAR on Floor " + (i+1) + ": " );
+            for (int l= 0; l < car_slots.size();l++) 
+            { 		      
+                System.out.print(car_slots.get(i)); 		
+            }  
         
               car_slots.clear();
             
