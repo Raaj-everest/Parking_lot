@@ -130,6 +130,9 @@ public class app {
                 case "EXIT":
                 System.out.println("you terminated the program");
                 break;
+                case "HELP":
+                ParkingLot.help();
+                break;
 
             default:
             System.out.println("oops you made an error in typing........");
