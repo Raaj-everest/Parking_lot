@@ -9,11 +9,11 @@ public class app {
 
 
     public static void main(String[] args) {
-        System.out.println("\n");
+
         boolean exitstatus = false;
         String quit = "exit";
         ParkingLot.help();
-        System.out.print("Enter the commands ");
+        System.out.print("start the program by cerating a new parking_lot ");
         System.out.println("\n");
         do {
             Scanner sc = new Scanner(System.in);
@@ -26,9 +26,13 @@ public class app {
             str = str.trim();
             String[] newStr = str.split("\\s+");
 
+
+            
+
             switch (newStr[0]) {
             case "DISPLAY":
                 try {
+                    if(ParkingLot.getParkinglot_instance()!=null){
 
                     switch (newStr[1]) {
 
@@ -78,6 +82,10 @@ public class app {
                         break;
 
                     }
+                } else{
+                    System.out.println("you need to create a parking lot first..");
+                    System.out.println("for any help enter 'help' ");
+                }
 
                 } catch (Exception ex) {
                     ex.getStackTrace();
@@ -119,11 +127,14 @@ public class app {
                 }
 
                 break;
+                case "EXIT":
+                System.out.println("you terminated the program");
+                break;
 
             default:
             System.out.println("oops you made an error in typing........");
-            System.out.println("please follow the instruction as mentioned below");
-                ParkingLot.help();
+            System.out.println("for any help enter 'help' ");
+        
                 break;
 
             }
