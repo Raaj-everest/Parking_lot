@@ -1,7 +1,10 @@
 package ParkingLot;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
+
 import vehicles.Vehicle;
 import vehicles.types.*;
 
@@ -21,7 +24,7 @@ public class ParkingLot {
 
     }
 
-    public static ParkingLot CreateParkingLot(String id, int Number_of_floors, int Number_of_slots) {
+    public static void CreateParkingLot(String id, int Number_of_floors, int Number_of_slots) {
         if (parkinglot_instance != null) {
             System.out.println("parking lot is already created..");
         }
@@ -34,7 +37,6 @@ public class ParkingLot {
                     + " slots per floor");
         }
 
-        return parkinglot_instance;
     }
 
     private static String getParkinglot_id() {
@@ -45,7 +47,7 @@ public class ParkingLot {
         if (parkinglot_instance != null) {
             boolean flag = false;
             for (int i = 0; i < Number_of_floors; i++) {
-                if (flag == false) {
+                if (!flag) {
                     for (int j = 0; j < Number_of_slots; j++) {
                         if (vehicle_type.equals("TRUCK") && j == 0) {
                             if (floors[i][j] == null) {
@@ -109,10 +111,9 @@ public class ParkingLot {
         }
     }
 
-    private static String genereateTicket(int a, int b) {
+    private static void genereateTicket(int a, int b) {
         String ticket = getParkinglot_id() + "_" + a + "_" + b;
         System.out.println("parked Vehicle. ticket ID: " + ticket);
-        return ticket;
     }
 
     public static void help() {
@@ -132,227 +133,122 @@ public class ParkingLot {
         System.out.println();
     }
 
-    public static void display_free_count_truck() {
-        int free_truck_slots = 0;
-
-        for (int i = 0; i < Number_of_floors; i++) {
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j == 0) {
-                    if (floors[i][j] == null) {
-                        free_truck_slots += 1;
-                    }
-                }
-            }
-            System.out.println("No. of free slots for TRUCK on Floor " + (i + 1) + ":" + free_truck_slots);
-            free_truck_slots = 0;
-        }
-    }
-
-    public static void display_free_count_bike() {
-        int free_bike_slots = 0;
-
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j > 0 && j < 3) {
-                    if (floors[i][j] == null) {
-                        free_bike_slots += 1;
-                    }
-                }
-            }
-            System.out.println("No. of free slots for Bike on Floor " + (i + 1) + ":" + free_bike_slots);
-            free_bike_slots = 0;
-        }
-    }
-
-    public static void display_free_count_car() {
-        int free_car_slots = 0;
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j > 2) {
-                    if (floors[i][j] == null) {
-                        free_car_slots += 1;
-                    }
-                }
-            }
-            System.out.println("No. of free slots for CAR on Floor " + (i + 1) + ":" + free_car_slots);
-            free_car_slots = 0;
-        }
-    }
-
-    public static void display_free_slots_truck() {
-        List<Integer> truck_slots = new ArrayList<>();
-
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j == 0) {
-                    if (floors[i][j] == null) {
-                        truck_slots.add(j + 1);
-
-                    }
-                }
-            }
-
-            System.out.print("No. of free slots for TRUCK on Floor " + (i + 1) + ": ");
-            for (int l = 0; l < truck_slots.size(); l++) {
-                System.out.print(" " + truck_slots.get(l));
-                if (l != (truck_slots.size() - 1)) {
-                    System.out.print(",");
-                }
-            }
-            System.out.println("");
-            truck_slots.clear();
-
-        }
-        System.out.println("\n");
-    }
-
-    public static void display_free_slots_bike() {
-        List<Integer> bike_slots = new ArrayList<>();
-
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j > 0 && j < 3) {
-                    if (floors[i][j] == null) {
-                        bike_slots.add(j + 1);
-
-                    }
-                }
-            }
-
-            System.out.print("No. of free slots for BIKE on Floor " + (i + 1) + ": ");
-            for (int l = 0; l < bike_slots.size(); l++) {
-                System.out.print(" " + bike_slots.get(l));
-                if (l != (bike_slots.size() - 1)) {
-                    System.out.print(",");
-                }
-            }
-            System.out.println("");
-
-            bike_slots.clear();
-
-        }
-        System.out.println("\n");
-    }
-
-    public static void display_free_slots_cars() {
-        List<Integer> car_slots = new ArrayList<>();
-
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j > 2) {
-                    if (floors[i][j] == null) {
-                        car_slots.add(j + 1);
-
-                    }
-                }
-            }
-
-            System.out.print("No. of free slots for CAR on Floor " + (i + 1) + ": ");
-            for (int l = 0; l < car_slots.size(); l++) {
-                System.out.print(" " + car_slots.get(l));
-                if (l != (car_slots.size() - 1)) {
-                    System.out.print(",");
-                }
-            }
-            System.out.println("");
-
-            car_slots.clear();
-
-        }
-
-    }
-
-    public static void display_occupied_slots_truck() {
-        List<Integer> truck_slots = new ArrayList<>();
-
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j == 0) {
-                    if (floors[i][j] != null) {
-                        truck_slots.add(j + 1);
-
-                    }
-                }
-            }
-
-            System.out.print("No. of occupied slots for TRUCK on Floor " + (i + 1) + ": ");
-            for (int l = 0; l < truck_slots.size(); l++) {
-                System.out.print(" " + truck_slots.get(l));
-                if (l != (truck_slots.size() - 1)) {
-                    System.out.print(",");
-                }
-            }
-            System.out.println("");
-            truck_slots.clear();
-
-        }
-
-    }
-
-    public static void display_occupied_slots_bike() {
-        List<Integer> bike_slots = new ArrayList<>();
-
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j > 0 && j < 3) {
-                    if (floors[i][j] != null) {
-                        bike_slots.add(j + 1);
-
-                    }
-                }
-            }
-
-            System.out.print("No. of occupied slots for BIKE on Floor " + (i + 1) + ": ");
-            for (int l = 0; l < bike_slots.size(); l++) {
-                System.out.print(" " + bike_slots.get(l));
-                if (l != (bike_slots.size() - 1)) {
-                    System.out.print(",");
-                }
-            }
-            System.out.println("");
-            bike_slots.clear();
-
-        }
-
-    }
-
-    public static void display_occupied_slots_cars() {
-        List<Integer> car_slots = new ArrayList<>();
-
-        for (int i = 0; i < Number_of_floors; i++) {
-
-            for (int j = 0; j < Number_of_slots; j++) {
-                if (j > 2) {
-                    if (floors[i][j] != null) {
-                        car_slots.add(j + 1);
-
-                    }
-                }
-            }
-
-            System.out.print("No. of occupied slots for CAR on Floor " + (i + 1) + ": ");
-            for (int l = 0; l < car_slots.size(); l++) {
-                System.out.print(" " + car_slots.get(l));
-                if (l != (car_slots.size() - 1)) {
-                    System.out.print(",");
-                }
-            }
-            System.out.println("");
-            car_slots.clear();
-
-        }
-
-    }
 
     public static ParkingLot getParkinglot_instance() {
         return parkinglot_instance;
     }
 
+    public static void display_free_count(String Vehicle_type){
+        int count=0;
+        for (int i = 0; i < Number_of_floors; i++) {
+            for (int j = 0; j < Number_of_slots; j++) {
+                if(Vehicle_type.equals("TRUCK")){
+                    if (j == 0) {
+                        if (floors[i][j] == null) {
+                            count += 1;
+                        }
+                    }
+                }
+                if(Vehicle_type.equals("BIKE")){
+                    if (j > 0 && j < 3) {
+                        if (floors[i][j] == null) {
+                            count += 1;
+                        }
+                    }
+                }
+                if(Vehicle_type.equals("CAR")){
+                    if (j > 2) {
+                        if (floors[i][j] == null) {
+                            count += 1;
+                        }
+                    }
+                }
+            }
+            System.out.println("No. of free slots for "+Vehicle_type+" on Floor " + (i + 1) + ":" + count);
+            count= 0;
+        }
+    }
+
+    public static void display_free_slots(String Vehicle_type){
+        List<Integer> slots = new ArrayList<>();
+        for (int i = 0; i < Number_of_floors; i++) {
+            for (int j = 0; j < Number_of_slots; j++) {
+                if(Vehicle_type.equals("TRUCK")){
+
+                    if (j == 0) {
+                        if (floors[i][j] == null) {
+                            slots.add(j+1) ;
+                        }
+                    }
+                }
+                if(Vehicle_type.equals("BIKE")){
+                    if (j > 0 && j < 3) {
+                        if (floors[i][j] == null) {
+                            slots.add(j+1);
+                        }
+                    }
+                }
+                if(Vehicle_type.equals("CAR")){
+                    if (j > 2) {
+                        if (floors[i][j] == null) {
+                            slots.add(j+1);
+                        }
+                    }
+                }
+            }
+
+            System.out.print("No. of free slots for "+Vehicle_type+" on Floor " + (i + 1) + ": ");
+            for (int l = 0; l < slots.size(); l++) {
+                System.out.print(" " + slots.get(l));
+                if (l != (slots.size() - 1)) {
+                    System.out.print(",");
+                }
+            }
+            System.out.println();
+            slots.clear();
+        }
+    }
+
+    public static void display_occupied_slots(String Vehicle_type){
+        List<Integer> slots = new ArrayList<>();
+        for (int i = 0; i < Number_of_floors; i++) {
+            for (int j = 0; j < Number_of_slots; j++) {
+                if(Vehicle_type.equals("TRUCK")){
+
+                    if (j == 0) {
+                        if (floors[i][j] != null) {
+                            slots.add(j+1) ;
+                        }
+                    }
+                }
+                if(Vehicle_type.equals("BIKE")){
+                    if (j > 0 && j < 3) {
+                        if (floors[i][j] != null) {
+                            slots.add(j+1);
+                        }
+                    }
+                }
+                if(Vehicle_type.equals("CAR")){
+                    if (j > 2) {
+                        if (floors[i][j] != null) {
+                            slots.add(j+1);
+                        }
+                    }
+                }
+            }
+
+            System.out.print("No. of free slots for "+Vehicle_type+" on Floor " + (i + 1) + ": ");
+            for (int l = 0; l < slots.size(); l++) {
+                System.out.print(" " + slots.get(l));
+                if (l != (slots.size() - 1)) {
+                    System.out.print(",");
+                }
+            }
+            System.out.println();
+            slots.clear();
+        }
+    }
+
 }
+
+
