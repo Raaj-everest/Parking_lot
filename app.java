@@ -11,17 +11,12 @@ public class app {
     public static void main(String[] args) {
 
         boolean exitstatus = false;
-        String quit = "exit";
         ParkingLot.help();
         System.out.print("start the program by cerating a new parking_lot ");
         System.out.println("\n");
         do {
             Scanner sc = new Scanner(System.in);
             String str = sc.nextLine();
-            if (str.equalsIgnoreCase(quit)) {
-                exitstatus = true;
-                sc.close();
-            }
             str = str.toUpperCase();
             str = str.trim();
             String[] newStr = str.split("\\s+");
@@ -69,16 +64,16 @@ public class app {
                         break;
 
                     case "OCCUPIED_SLOTS":
-                        if (newStr[2] == "BIKE") {
+                        if (newStr[2].equals("BIKE") ){
                            ParkingLot.display_occupied_slots_bike();
                         }
-                        if (newStr[2] == "CAR") {
+                        if (newStr[2].equals("CAR") ){
                             ParkingLot.display_occupied_slots_cars();
                         }
-                        if (newStr[2] == "TRUCK") {
+                        if (newStr[2].equals("TRUCK")) {
                             ParkingLot.display_occupied_slots_truck();
                         }
-                        System.out.println("OCCUPIED");
+                    
                         break;
 
                     }
@@ -129,8 +124,13 @@ public class app {
                 break;
                 case "EXIT":
                 System.out.println("you terminated the program");
+        
+                    exitstatus = true;
+                    sc.close();
+            
                 break;
                 case "HELP":
+                
                 ParkingLot.help();
                 break;
 

@@ -42,71 +42,71 @@ public class ParkingLot {
     }
 
     public static void ParkVehicle(String vehicle_type, String rigistration_number, String newStr) {
-        if(parkinglot_instance != null){
-        boolean flag = false;
-        for (int i = 0; i < Number_of_floors; i++) {
-            if (flag == false) {
-                for (int j = 0; j < Number_of_slots; j++) {
-                    if (vehicle_type.equals("TRUCK") && j == 0) {
-                        if (floors[i][j] == null) {
-                            floors[i][j] = new Truck(rigistration_number, newStr);
+        if (parkinglot_instance != null) {
+            boolean flag = false;
+            for (int i = 0; i < Number_of_floors; i++) {
+                if (flag == false) {
+                    for (int j = 0; j < Number_of_slots; j++) {
+                        if (vehicle_type.equals("TRUCK") && j == 0) {
+                            if (floors[i][j] == null) {
+                                floors[i][j] = new Truck(rigistration_number, newStr);
 
-                            flag = true;
-                            genereateTicket(i, j);
-                            break;
-                        } else if (i == 1) {
-                            System.out.println("Parking lot full for the trucks");
+                                flag = true;
+                                genereateTicket(i, j);
+                                break;
+                            } else if (i == 1) {
+                                System.out.println("Parking lot full for the trucks");
+                            }
+
+                        } else if (vehicle_type.equals("BIKE") && j > 0 && j < 3) {
+                            if (floors[i][j] == null) {
+                                floors[i][j] = new Bike(rigistration_number, newStr);
+
+                                flag = true;
+
+                                genereateTicket(i, j);
+                                break;
+                            } else if (i == 2) {
+                                System.out.println("Parking lot full for the bikes");
+                            }
+
+                        } else
+
+                        if (vehicle_type.equals("CAR")) {
+                            if (floors[i][j] == null && j > 2) {
+                                floors[i][j] = new Car(rigistration_number, newStr);
+
+                                flag = true;
+                                genereateTicket(i, j);
+                                break;
+                            } else if (i == Number_of_slots - 1) {
+                                System.out.println("parking lot is full for the cars");
+                            }
                         }
 
-                    } else if (vehicle_type.equals("BIKE") && j > 0 && j < 3) {
-                        if (floors[i][j] == null) {
-                            floors[i][j] = new Bike(rigistration_number, newStr);
-
-                            flag = true;
-
-                            genereateTicket(i, j);
-                            break;
-                        } else if (i == 2) {
-                            System.out.println("Parking lot full for the bikes");
-                        }
-
-                    } else
-
-                    if (vehicle_type.equals("CAR")) {
-                        if (floors[i][j] == null && j > 2) {
-                            floors[i][j] = new Car(rigistration_number, newStr);
-
-                            flag = true;
-                            genereateTicket(i, j);
-                            break;
-                        } else if (i == Number_of_slots - 1) {
-                            System.out.println("parking lot is full for the cars");
-                        }
                     }
-
                 }
-            }
 
-        }
-    }else 
-    System.out.println("you need to create a parking lot first..");
-    System.out.println("for any help enter 'help' ");
+            }
+        } else
+            System.out.println("you need to create a parking lot first..");
+        System.out.println("for any help enter 'help' ");
     }
 
     public static void unParkVehicle(int floor, int slot) {
-        if(parkinglot_instance != null){
-        if (floors[floor][slot] != null) {
-  
-            System.out.println("unparked vehicle with rigistration number: "
-                    + floors[floor][slot].getRigistration_number() + "and" + floors[floor][slot].getcolour());
-            floors[floor][slot] = null;
-        } else if (floors[floor][slot] == null) {
-            System.out.println("invalid ticket");
+        if (parkinglot_instance != null) {
+            if (floors[floor][slot] != null) {
+
+                System.out.println("unparked vehicle with rigistration number: "
+                        + floors[floor][slot].getRigistration_number() + "and" + floors[floor][slot].getcolour());
+                floors[floor][slot] = null;
+            } else if (floors[floor][slot] == null) {
+                System.out.println("invalid ticket");
+            }
+        } else {
+            System.out.println("you need to create a parking lot first..");
+            System.out.println("for any help enter 'help' ");
         }
-    }else{
-        System.out.println("you need to create a parking lot first..");
-        System.out.println("for any help enter 'help' ");
-    }
     }
 
     private static String genereateTicket(int a, int b) {
@@ -115,10 +115,10 @@ public class ParkingLot {
         return ticket;
     }
 
-    public static void help() { 
-        System.out.println("+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+"); 
+    public static void help() {
+        System.out.println("+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+");
         System.out.println("|===========this is a plafrom for maintaining parking lot===============|");
-        System.out.println("|-----------------------------------------------------------------------|");                      
+        System.out.println("|-----------------------------------------------------------------------|");
         System.out.println("|->     you can Manage the parking lot by following commands            |");
         System.out.println("|-----------------------------------------------------------------------|");
         System.out.println("|create_parking_lot <Building_ID> <Number_Of_floors> <Number_of_slots>  |");
@@ -129,7 +129,7 @@ public class ParkingLot {
         System.out.println("|display occupied_slots <vehicle_type>                                  |");
         System.out.println("|exit                                                                   |");
         System.out.println("+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+");
-        System.out.println("\n");
+        System.out.println();
     }
 
     public static void display_free_count_truck() {
@@ -143,7 +143,7 @@ public class ParkingLot {
                     }
                 }
             }
-            System.out.println("No. of free slots for TRUCK on Floor " + (i+1) + ":" + free_truck_slots);
+            System.out.println("No. of free slots for TRUCK on Floor " + (i + 1) + ":" + free_truck_slots);
             free_truck_slots = 0;
         }
     }
@@ -160,7 +160,7 @@ public class ParkingLot {
                     }
                 }
             }
-            System.out.println("No. of free slots for Bike on Floor " + (i+1) + ":" + free_bike_slots);
+            System.out.println("No. of free slots for Bike on Floor " + (i + 1) + ":" + free_bike_slots);
             free_bike_slots = 0;
         }
     }
@@ -176,7 +176,7 @@ public class ParkingLot {
                     }
                 }
             }
-            System.out.println("No. of free slots for CAR on Floor " + (i+1) + ":" + free_car_slots);
+            System.out.println("No. of free slots for CAR on Floor " + (i + 1) + ":" + free_car_slots);
             free_car_slots = 0;
         }
     }
@@ -197,12 +197,16 @@ public class ParkingLot {
 
             System.out.print("No. of free slots for TRUCK on Floor " + (i + 1) + ": ");
             for (int l = 0; l < truck_slots.size(); l++) {
-                System.out.print(truck_slots.get(i));
+                System.out.print(" " + truck_slots.get(l));
+                if (l != (truck_slots.size() - 1)) {
+                    System.out.print(",");
+                }
             }
-
+            System.out.println("");
             truck_slots.clear();
 
         }
+        System.out.println("\n");
     }
 
     public static void display_free_slots_bike() {
@@ -221,12 +225,17 @@ public class ParkingLot {
 
             System.out.print("No. of free slots for BIKE on Floor " + (i + 1) + ": ");
             for (int l = 0; l < bike_slots.size(); l++) {
-                System.out.print(bike_slots.get(i));
+                System.out.print(" " + bike_slots.get(l));
+                if (l != (bike_slots.size() - 1)) {
+                    System.out.print(",");
+                }
             }
+            System.out.println("");
 
             bike_slots.clear();
 
         }
+        System.out.println("\n");
     }
 
     public static void display_free_slots_cars() {
@@ -245,12 +254,17 @@ public class ParkingLot {
 
             System.out.print("No. of free slots for CAR on Floor " + (i + 1) + ": ");
             for (int l = 0; l < car_slots.size(); l++) {
-                System.out.print(car_slots.get(i));
+                System.out.print(" " + car_slots.get(l));
+                if (l != (car_slots.size() - 1)) {
+                    System.out.print(",");
+                }
             }
+            System.out.println("");
 
             car_slots.clear();
 
         }
+
     }
 
     public static void display_occupied_slots_truck() {
@@ -269,12 +283,16 @@ public class ParkingLot {
 
             System.out.print("No. of occupied slots for TRUCK on Floor " + (i + 1) + ": ");
             for (int l = 0; l < truck_slots.size(); l++) {
-                System.out.print(truck_slots.get(i));
+                System.out.print(" " + truck_slots.get(l));
+                if (l != (truck_slots.size() - 1)) {
+                    System.out.print(",");
+                }
             }
-
+            System.out.println("");
             truck_slots.clear();
 
         }
+
     }
 
     public static void display_occupied_slots_bike() {
@@ -293,12 +311,16 @@ public class ParkingLot {
 
             System.out.print("No. of occupied slots for BIKE on Floor " + (i + 1) + ": ");
             for (int l = 0; l < bike_slots.size(); l++) {
-                System.out.print(bike_slots.get(i));
+                System.out.print(" " + bike_slots.get(l));
+                if (l != (bike_slots.size() - 1)) {
+                    System.out.print(",");
+                }
             }
-
+            System.out.println("");
             bike_slots.clear();
 
         }
+
     }
 
     public static void display_occupied_slots_cars() {
@@ -317,13 +339,18 @@ public class ParkingLot {
 
             System.out.print("No. of occupied slots for CAR on Floor " + (i + 1) + ": ");
             for (int l = 0; l < car_slots.size(); l++) {
-                System.out.print(car_slots.get(i));
+                System.out.print(" " + car_slots.get(l));
+                if (l != (car_slots.size() - 1)) {
+                    System.out.print(",");
+                }
             }
-
+            System.out.println("");
             car_slots.clear();
 
         }
+
     }
+
     public static ParkingLot getParkinglot_instance() {
         return parkinglot_instance;
     }
