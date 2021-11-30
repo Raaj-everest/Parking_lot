@@ -1,8 +1,4 @@
-
-
 import java.util.Scanner;
-
-import ParkingLot.ParkingLot;
 
 
 
